@@ -2,7 +2,7 @@ import { Stack } from 'expo-router';
 import { SQLiteProvider } from 'expo-sqlite';
 import { StatusBar } from 'expo-status-bar';
 import { Suspense, useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { LogBox, StyleSheet, View } from 'react-native';
 
 import { AppLockGate } from '@/components/AppLockGate';
 import { LoadingView } from '@/components/LoadingView';
@@ -10,6 +10,11 @@ import { SplashOverlay } from '@/components/SplashOverlay';
 import { Colors, FontSize, FontWeight } from '@/constants/theme';
 import { DATABASE_NAME, initDatabase } from '@/db/client';
 import { initNotifications } from '@/services/notificationService';
+
+// Expo Go on Android warns on every launch that PUSH (server) notifications are unavailable.
+// CareerKit only uses LOCAL notifications, which still work in Expo Go, so this warning is
+// harmless. Hide only this one message; all other warnings and errors still show.
+LogBox.ignoreLogs(['[expo-notifications] Push notifications (remote notifications) are unavailable']);
 
 // If opening the DB or a migration fails, Expo Router shows its error screen with a "Retry" button.
 export { ErrorBoundary } from 'expo-router';

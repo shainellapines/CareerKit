@@ -49,7 +49,9 @@
         {
           "faceIDPermission": "CareerKit uses Face ID so you can unlock the app quickly. Your PIN always works too."
         }
-      ]
+      ],
+      "expo-status-bar",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true,
